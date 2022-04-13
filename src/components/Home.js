@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <div className="p-4 box mt-3 text-center">
-        Welcome <br />
+        Hello, Welcome <br />
         {user && user.email}
       </div>
       
