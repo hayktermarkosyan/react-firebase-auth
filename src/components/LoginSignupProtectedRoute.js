@@ -5,10 +5,10 @@ import { useUserAuth } from "../context/AuthContext";
 const LoginSignupProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
-  if (user) {
-    return <Navigate to="/home" />;
+  if (!user) {
+    return children;
   }
-  return children;
+  return <Navigate to="/home" />;
 };
 
 export default LoginSignupProtectedRoute;
