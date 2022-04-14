@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useUserAuth } from "../context/AuthContext";
 
-const SignuoProtectedRoute = ({ children }) => {
+const SignupProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
   
@@ -12,4 +12,4 @@ const SignuoProtectedRoute = ({ children }) => {
   return <Navigate to="/home" />;
 };
 
-export default SignuoProtectedRoute;
+export default SignupProtectedRoute;
