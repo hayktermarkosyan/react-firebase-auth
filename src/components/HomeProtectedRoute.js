@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useUserAuth } from "../context/AuthContext";
 
-const ProtectedRoute = ({ children }) => {
+const HomeProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
   
@@ -12,4 +12,4 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-export default ProtectedRoute;
+export default HomeProtectedRoute;
