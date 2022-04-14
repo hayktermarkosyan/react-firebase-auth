@@ -2,13 +2,13 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useUserAuth } from "../context/AuthContext";
 
-const LoginProtectedRoute = ({ children }) => {
+const LoginSignupProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
-  if (!user) {
-    return children;
+  if (user) {
+    return <Navigate to="/home" />;
   }
-  return <Navigate to="/home" />;
+  return children;
 };
 
-export default LoginProtectedRoute;
+export default LoginSignupProtectedRoute;

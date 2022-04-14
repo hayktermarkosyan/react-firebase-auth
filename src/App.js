@@ -4,9 +4,8 @@ import "./App.css";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import HomeProtectedRoute from "./components/HomeProtectedRoute";
-import LoginProtectedRoute from "./components/LoginProtectedRoute";
-import SignupProtectedRoute from "./components/SignupProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoginSignupProtectedRoute from "./components/LoginSignupProtectedRoute"
 import { UserAuthContextProvider } from "./context/AuthContext";
 
 function App() {
@@ -17,25 +16,30 @@ function App() {
           <UserAuthContextProvider>
             <Routes>
               <Route
+                exact
                 path="/home"
                 element={
-                  <HomeProtectedRoute>
+                  <ProtectedRoute>
                     <Home />
-                  </HomeProtectedRoute>
+                  </ProtectedRoute>
                 }
               />
-              <Route path="/" 
-                element={ 
-                  <LoginProtectedRoute>
-                    <Login />
-                  </LoginProtectedRoute>
-                } 
-              />
-              <Route path="/signup" 
+              <Route 
+                exact 
+                path="/" 
                 element={
-                  <SignupProtectedRoute>
-                    <Signup />  
-                  </SignupProtectedRoute>
+                  <LoginSignupProtectedRoute>
+                    <Login />
+                  </LoginSignupProtectedRoute>
+                }
+              />
+              <Route 
+                exact
+                path="/signup" 
+                element={
+                  <LoginSignupProtectedRoute>
+                    <Signup />
+                  </LoginSignupProtectedRoute>
                 } 
               />
             </Routes>
