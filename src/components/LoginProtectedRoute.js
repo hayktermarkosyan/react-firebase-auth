@@ -5,7 +5,6 @@ import { useUserAuth } from "../context/AuthContext";
 const LoginProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
-  
   if (!user) {
     return children;
   }
