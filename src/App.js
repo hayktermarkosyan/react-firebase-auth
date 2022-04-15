@@ -5,15 +5,16 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
-import LoginSignupProtectedRoute from "./components/LoginSignupProtectedRoute"
-import { UserAuthContextProvider } from "./context/AuthContext";
+import { useUserAuth } from "./context/AuthContext";
 
 function App() {
+  const { user } = useUserAuth();
+
+  console.log(user)
   return (
     <Container style={{ width: "400px" }}>
       <Row>
         <Col>
-          <UserAuthContextProvider>
             <Routes>
               <Route
                 exact
@@ -27,23 +28,14 @@ function App() {
               <Route 
                 exact 
                 path="/" 
-                element={
-                  <LoginSignupProtectedRoute>
-                    <Login />
-                  </LoginSignupProtectedRoute>
-                }
+                element={user ? <Home /> : <Login />}
               />
               <Route 
                 exact
                 path="/signup" 
-                element={
-                  <LoginSignupProtectedRoute>
-                    <Signup />
-                  </LoginSignupProtectedRoute>
-                } 
+                element={user ? <Home /> : <Signup />} 
               />
             </Routes>
-          </UserAuthContextProvider>
         </Col>
       </Row>
     </Container>
