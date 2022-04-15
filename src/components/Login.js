@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert, Button } from "react-bootstrap";
 import { useUserAuth } from "../context/AuthContext";
+import GoogleButton from "react-google-button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { logIn } = useUserAuth();
+  const { logIn, googleSignIn } = useUserAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,6 +19,16 @@ const Login = () => {
       navigate("/home", { replace: true });
     } catch (err) {
       setError(err.message);
+    }
+  };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -49,7 +60,15 @@ const Login = () => {
             </Button>
           </div>
         </Form>
+        <div>
+          <GoogleButton
+            className="g-btn"
+            type="dark"
+            onClick={handleGoogleSignIn}
+          />
+        </div>
       </div>
+      
       <div className="p-4 mt-3 text-center">
         Create an account. <Link to="/signup">Sign up</Link>
       </div>
